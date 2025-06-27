@@ -1,5 +1,5 @@
 //q. 3: Lista de Exercícios – Listas Encadeadas | parte 1
-
+import java.util.Scanner;
 
 public class ld_compras{
     ld_comp begin;
@@ -118,7 +118,84 @@ public void browse() {
        }
     }
 
-public static void main(String[] args){
-    //imp
-}
+    public static void main(String[] args){
+        int option=0;
+        ld_compras carrinho=new ld_compras();
+
+        boolean running=true;
+        Scanner s=new Scanner(System.in);
+        while(running){
+            System.out.println("\n Menu: \n");
+            System.out.println("1 - Adicionar produto; \n 2 - Remover produto; \n"+
+                "3 - Navegar entre os pedidos; \n 4 - Ver todos os produtos no carrinho"+
+                + " \n 5 - Sair do programa");
+            System.out.println("\n\n Insira a opção desejada: ");
+            option=s.nextInt();
+
+            boolean u_opt=false;
+
+            if(option < 1 || option > 3){
+                System.err.println("Digite um número válido");
+            }else{
+                u_opt=true;
+            }        
+            
+            if(u_opt){
+                switch(option){
+                    case 1{
+
+                        System.out.println("\nInsira o nome do produto: ");
+                        String nome=s.nextLine();
+
+                        System.out.println("\nInsira a quantidade: ");
+                        int qtd=s.nextInt();
+
+                        System.out.println("\n Insira o valor do produto: ");
+                        double preco=s.nextDouble();
+
+                        carrinho.inserirProd(nome, qtd, preco);
+
+                        break;
+                    }
+
+                    case 2:{
+                         System.out.println("\nInsira o nome do produto: ");
+                        String nome=s.nextLine();
+
+                        System.out.println("\nInsira a quantidade: ");
+                        int qtd=s.nextInt();
+
+                        System.out.println("\n Insira o valor do produto: ");
+                        double preco=s.nextDouble();
+
+                        carrinho.removerProd(nome, qtd, preco);
+
+                    }
+
+
+
+
+                }
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            }
+
+
+
+
+
+    }
 }
