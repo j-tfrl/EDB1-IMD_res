@@ -13,13 +13,16 @@ public class ld_compras{
     public void inserirProd(String nome, int qtd, double preco){
         ld_comp prod=new ld_comp(nome, qtd, preco);
 
-        if(begin==tail){
-            begin=tail;
-            tail=prod; //o 'prod' erá o produto que começa a lista
+        if(begin==null){
+            begin=prod;
+            tail=prod; //o 'prod' será o produto que começa a lista e termina a lista
+            prod.ant=null; //opcional: deixa anterior e próximo como nulos
+            prod.prox=null;
         }else{
             tail.prox=prod;
-            prod.anterior=tail;
+            prod.ant=tail;
             tail=prod; //configura os 'ponteiros'
+            prod.prox=null;
         }
     }
 
@@ -111,7 +114,7 @@ public void browse() {
 
     public void exibirCarro(){
        ld_comp atual=begin;
-       System.out.println("Itens no carrinho: \n");
+       System.out.println("\nItens no carrinho: \n");
        while(atual!=null){
             System.out.println(atual.nome+" "+atual.qtd+" "+atual.preco+" "+"\n");
             atual=atual.prox;
@@ -127,14 +130,13 @@ public void browse() {
         while(running){
             System.out.println("\n Menu: \n");
             System.out.println("1 - Adicionar produto; \n 2 - Remover produto; \n"+
-                "3 - Navegar entre os pedidos; \n 4 - Ver todos os produtos no carrinho"+
-                + " \n 5 - Sair do programa");
+                "3 - Navegar entre os pedidos; \n 4 - Ver todos os produtos no carrinho \n 5 - Sair do programa");
             System.out.println("\n\n Insira a opção desejada: ");
             option=s.nextInt();
 
             boolean u_opt=false;
 
-            if(option < 1 || option > 3){
+            if(option < 1 || option > 5){
                 System.err.println("Digite um número válido");
             }else{
                 u_opt=true;
@@ -142,10 +144,10 @@ public void browse() {
             
             if(u_opt){
                 switch(option){
-                    case 1{
+                    case 1:{
 
                         System.out.println("\nInsira o nome do produto: ");
-                        String nome=s.nextLine();
+                        String nome=s.next();
 
                         System.out.println("\nInsira a quantidade: ");
                         int qtd=s.nextInt();
@@ -169,33 +171,39 @@ public void browse() {
                         double preco=s.nextDouble();
 
                         carrinho.removerProd(nome, qtd, preco);
+                        break;
 
                     }
 
+                    case 3:{
 
+                        carrinho.browse();
+                        break;
 
+                    }
+
+                    case 4:{
+                        carrinho.exibirCarro();
+                        break;
+
+                    }
+
+                    case 5:{
+                        running=false;
+                        System.out.println("Saindo do programa...");
+                        break;
+
+                    }
+
+                    default:{ break;}
 
                 }
+            }else{
+                System.err.println("Insira uma opção válida.\n");
             }
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            }
-
-
-
-
+        }
+    s.close();
 
     }
 }
